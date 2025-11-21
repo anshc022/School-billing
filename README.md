@@ -25,4 +25,4 @@ If the screen goes white or the computer starts making funny noises:
 3.  If all else fails, just close your eyes and hope it fixes itself. (Or contact the developer).
 
 ---
-*Made with ❤️ and a lot of coffee.*
+*Made with ❤️ and a lot of coffee by Pranshu Chourasia.*

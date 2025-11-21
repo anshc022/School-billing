@@ -1,0 +1,52 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database/school.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  username     String  @unique
+  passwordHash String
+  role         String  @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Student {
+  id        Int     @id @default(autoincrement())
+  name      String
+  class     String
+  section   String
+  rollNo    String
+  parentName String
+  phone     String
+  address   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  fees      Fee[]
+
+  @@map("students")
+}
+
+model Fee {
+  id            Int     @id @default(autoincrement())
+  studentId     Int
+  student       Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  month         Int
+  year          Int
+  amount        Int
+  status        String  @default("unpaid")
+  paymentMethod String?
+  date          DateTime?
+  receiptId     String  @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("fees")
+}
